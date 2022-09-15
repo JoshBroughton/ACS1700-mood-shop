@@ -21,5 +21,11 @@ data.forEach(function (item, i) {
     newDiv.appendChild(description);
     newDiv.appendChild(price);
 
+    const button = document.createElement('button');
+    button.id = item.name;
+    button.dataset.price = item.price;
+    button.innerHTML = 'Add to Cart';
+    newDiv.appendChild(button);
+
     itemsContainer.appendChild(newDiv);
 });
