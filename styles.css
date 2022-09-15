@@ -1,6 +1,6 @@
 body {
     font-family: 'Raleway';
-    font-size: 16px;
+    font-size: 24px;
     line-height: 1.5;
     margin: 0;
 }
@@ -10,11 +10,13 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: #20BF55;
+    background-color: #2EC4B6;
 }
 
 .page-header h4 {
-    font-size: 2em;
+    font-size: 2.5em;
+    font-weight: 500;
+    margin: 50px;
 }
 
 .page-header ul {
@@ -22,10 +24,17 @@ body {
     flex-direction: row;
     justify-content: space-between;
     list-style: none;
+    padding-right: 50px;
 }
 
 .page-header a {
     display: block;
     padding: 0.5em;
     text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+.page-header a:hover {
+    color:rgba(0, 0, 0, 0.6)
 }
