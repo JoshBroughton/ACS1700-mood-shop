@@ -38,3 +38,59 @@ body {
 .page-header a:hover {
     color:rgba(0, 0, 0, 0.6)
 }
+
+main {
+    background-color: #FF9F1C;
+}
+
+.items {
+    width: 80%;
+    margin: auto;
+    padding: 75px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
+}
+
+.items img {
+    width: 100%;
+    border-radius: 10px;
+    height: 400px;
+}
+
+.item {
+    border: 5px solid black;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #DB7F8E;
+    height: 700px;
+}
+
+.item p:nth-child(2) {
+    margin: 0 10px;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+.item p:nth-child(3) {
+    align-self: center;
+    margin: 0;
+    font-weight: 500;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+
+.item button {
+    align-self: center;
+    justify-self: flex-end;
+    background-color: #2EC4B6;
+    margin: 0;
+    font-size: 32px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 15px;
+}
