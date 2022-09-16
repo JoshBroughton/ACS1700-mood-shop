@@ -29,3 +29,20 @@ data.forEach(function (item, i) {
 
     itemsContainer.appendChild(newDiv);
 });
+
+const cart = [];
+
+function addItem(name, price) {
+    const item = {name: name, price: price, qty: 1};
+    cart.push(item);
+}
+
+function showItems() {
+    console.log(cart);
+}
+
+addItem('Apple', 0.99);
+addItem('Orange', 1.29);
+addItem('Opinion', 0.02);
+
+showItems();
