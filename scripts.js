@@ -32,8 +32,9 @@ data.forEach(function (item, i) {
 
 const cart = [];
 
+// add item to art
 function addItem(name, price) {
-    for (let i = 0; i < cart.length; i++) {
+    for (const i in cart) {
         if (cart[i].name === name) {
             cart[i].qty += 1;
             return
@@ -43,12 +44,12 @@ function addItem(name, price) {
     cart.push(item);
 }
 
-//print out the total number of items, the items in the cart, and the total cost
-//of items in the cart
+// print out the total number of items, the items in the cart, and the total cost
+// of items in the cart
 function showItems() {
     console.log(`You have ${getQty()} items in your cart`);
 
-    for (let i = 0; i < cart.length; i++) {
+    for (const i in cart) {
         console.log(`- ${cart[i].name} $${cart[i].price} x ${cart[i].qty}`);
     }
 
@@ -56,11 +57,11 @@ function showItems() {
     console.log(`The total cost is: $${getTotalPrice()}`);
 }
 
-//get total quantity of items in the cart
+// get total quantity of items in the cart
 function getQty() {
     let totalQty = 0;
 
-    for (let i = 0; i < cart.length; i++) {
+    for (const i in cart) {
         totalQty += cart[i].qty;
     }
 
@@ -71,17 +72,37 @@ function getQty() {
 function getTotalPrice() {
     let totalPrice = 0;
 
-    for (let i =0; i < cart.length; i++) {
+    for (const i in cart) {
         totalPrice += cart[i].price * cart[i].qty;
     }
 
     return totalPrice.toFixed(2);
 }
 
+// remove qty of items from cart, or clear cart if not specified (or cart.qty < 1)
+function removeItem (name, qty = 0) {
+    for (const i in cart) {
+        if (cart[i].name === name) {
+            if (qty > 0) {
+                cart[i].qty -= qty;
+            } else if (cart[i]. qty < 1 || qty === 0) {
+                cart.splice(i, 1);
+            }
+            return;
+        }
+    }
+}
+
+
 addItem('Apple', 0.99);
 addItem('Orange', 1.29);
 addItem('Opinion', 0.02);
-addItem('Fribsee', 9.92);
+addItem('Frisbee', 9.92);
 addItem('Apple', 0.99);
+
+showItems();
+
+removeItem('Apple', 1);
+removeItem('Frisbee');
 
 showItems();
