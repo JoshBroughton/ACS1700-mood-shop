@@ -47,6 +47,29 @@ function addItem(name, price) {
     }
     const item = {name, price, qty: 1};
     cart.push(item);
+    console.log(cart);
+}
+//add event listener to all remove buttons
+function removeButtons() {
+    const buttons = Array.from(document.getElementsByClassName('remove-buttons'));
+    buttons.forEach((element, index) => element.addEventListener('click', () => {
+        console.log(index);
+        console.log(cart);
+        removeItem(cart[index].name, cart[index].qty);
+        console.log(cart);
+        clearList();
+        showItems();
+    }))
+}
+
+//clear the footer so it can be refreshed
+function clearList() {
+    while (itemList.lastChild !== null) {
+        itemList.lastChild.remove();
+    }
+    cartQty.innerHTML = '';
+    cartTotal.innerHTML = '';
+
 }
 
 // print out the total number of items, the items in the cart, and the total cost
@@ -54,14 +77,17 @@ function addItem(name, price) {
 function showItems() {
     cartQty.innerHTML = `You have ${getQty()} items in your cart`;
     let itemStr = '';
+
     for (const i in cart) {
         const { name, price, qty } = cart[i];
-        itemStr += `<li>${name} $${price} x ${qty} = $${price * qty}</li>`;
+        itemStr += `<li>${name} $${price} x ${qty} = $${price * qty}
+        <button class='remove-buttons' id='${name}-button'>Remove</button></li>`;
     }
 
     itemList.innerHTML = itemStr;
     
     cartTotal.innerHTML = `The total cost is: $${getTotalPrice()}`;
+    removeButtons();
 }
 
 // get total quantity of items in the cart
@@ -92,12 +118,15 @@ function removeItem (name, qty = 0) {
         if (cart[i].name === name) {
             if (qty > 0) {
                 cart[i].qty -= qty;
-            } else if (cart[i]. qty < 1 || qty === 0) {
+            } 
+            
+            if (cart[i].qty < 1 || qty === 0) {
                 cart.splice(i, 1);
             }
             return;
         }
     }
+    
 }
 
 //add event listener to all add to cart buttons
