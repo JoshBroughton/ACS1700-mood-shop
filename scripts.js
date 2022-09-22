@@ -2,8 +2,6 @@ import data from './data.js';
 
 const itemsContainer = document.querySelector('#items');
 const itemList = document.getElementById('item-list');
-const cartQty = document.getElementById('cart-qty');
-const cartTotal = document.getElementById('cart-total');
 
 data.forEach(function (item, i) {
     const newDiv = document.createElement('div');
@@ -33,6 +31,10 @@ data.forEach(function (item, i) {
     itemsContainer.appendChild(newDiv);
 });
 
+
+const cartQty = document.getElementById('cart-qty');
+const cartTotal = document.getElementById('cart-total');
+const all_items_button = Array.from(document.querySelectorAll('button'));
 const cart = [];
 
 // add item to art
@@ -98,11 +100,10 @@ function removeItem (name, qty = 0) {
     }
 }
 
-
-addItem('Apple', 0.99);
-addItem('Orange', 1.29);
-addItem('Opinion', 0.02);
-addItem('Frisbee', 9.92);
-addItem('Apple', 0.99);
+//add event listener to all add to cart buttons
+all_items_button.forEach(elt => elt.addEventListener('click', () => {
+    addItem(elt.getAttribute('id'), elt.getAttribute('data-price'));
+    showItems();
+}))
 
 showItems();
