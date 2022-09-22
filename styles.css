@@ -55,7 +55,7 @@ main {
 .items img {
     width: 100%;
     border-radius: 10px;
-    height: 400px;
+    height: 200px;
 }
 
 .item {
@@ -65,7 +65,7 @@ main {
     flex-direction: column;
     justify-content: space-between;
     background-color: #DB7F8E;
-    height: 700px;
+    height: 600px;
 }
 
 .item p:nth-child(2) {
