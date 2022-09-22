@@ -1,6 +1,9 @@
 import data from './data.js';
 
 const itemsContainer = document.querySelector('#items');
+const itemList = document.getElementById('item-list');
+const cartQty = document.getElementById('cart-qty');
+const cartTotal = document.getElementById('cart-total');
 
 data.forEach(function (item, i) {
     const newDiv = document.createElement('div');
@@ -47,14 +50,16 @@ function addItem(name, price) {
 // print out the total number of items, the items in the cart, and the total cost
 // of items in the cart
 function showItems() {
-    console.log(`You have ${getQty()} items in your cart`);
-
+    cartQty.innerHTML = `You have ${getQty()} items in your cart`;
+    let itemStr = '';
     for (const i in cart) {
-        console.log(`- ${cart[i].name} $${cart[i].price} x ${cart[i].qty}`);
+        const { name, price, qty } = cart[i];
+        itemStr += `<li>${name} $${price} x ${qty} = $${price * qty}</li>`;
     }
 
+    itemList.innerHTML = itemStr;
     
-    console.log(`The total cost is: $${getTotalPrice()}`);
+    cartTotal.innerHTML = `The total cost is: $${getTotalPrice()}`;
 }
 
 // get total quantity of items in the cart
@@ -65,7 +70,7 @@ function getQty() {
         totalQty += cart[i].qty;
     }
 
-    return totalQty
+    return totalQty;
 }
 
 // get total price of items in cart
@@ -99,10 +104,5 @@ addItem('Orange', 1.29);
 addItem('Opinion', 0.02);
 addItem('Frisbee', 9.92);
 addItem('Apple', 0.99);
-
-showItems();
-
-removeItem('Apple', 1);
-removeItem('Frisbee');
 
 showItems();
