@@ -47,16 +47,41 @@ function addItem(name, price) {
     }
     const item = {name, price, qty: 1};
     cart.push(item);
-    console.log(cart);
 }
 //add event listener to all remove buttons
 function removeButtons() {
     const buttons = Array.from(document.getElementsByClassName('remove-buttons'));
     buttons.forEach((element, index) => element.addEventListener('click', () => {
-        console.log(index);
-        console.log(cart);
         removeItem(cart[index].name, cart[index].qty);
-        console.log(cart);
+        clearList();
+        showItems();
+    }))
+}
+
+//event listener for add one button
+function addOneButtons() {
+    const buttons = Array.from(document.getElementsByClassName('add-one'));
+    buttons.forEach((element, index) => element.addEventListener('click', () => {
+        cart[index].qty += 1;
+        showItems();
+    }))
+}
+
+//event listener for remove one button
+function removeOneButtons() {
+    const buttons = Array.from(document.getElementsByClassName('remove-one'));
+    buttons.forEach((element, index) => element.addEventListener('click', () => {
+        removeItem(cart[index].name, 1);
+        clearList();
+        showItems();
+    }))
+}
+
+//event listener to add input qty
+function addInputQty() {
+    const fields = Array.from(document.getElementsByClassName('input-qty'));
+    fields.forEach((element, index) => element.addEventListener('change', () => {
+        cart[index].qty = parseInt(element.value, 10);
         clearList();
         showItems();
     }))
@@ -72,6 +97,15 @@ function clearList() {
 
 }
 
+//create the item string for displaying to footer
+function itemString(name, price, qty) {
+    return `<li><p>${name} $${parseFloat(price, 10).toFixed(2)} x ${qty} = $${parseFloat((price * qty), 10).toFixed(2)}</p>
+        <button class='remove-buttons' id='${name}-button'>Remove All</button>
+        <button class='add-one' id='add-${name}'>+</button>
+        <button class='remove-one' id='remove-${name}'>-</button>
+        <input class='input-qty' type=number></li>`;
+}
+
 // print out the total number of items, the items in the cart, and the total cost
 // of items in the cart
 function showItems() {
@@ -80,14 +114,16 @@ function showItems() {
 
     for (const i in cart) {
         const { name, price, qty } = cart[i];
-        itemStr += `<li>${name} $${price} x ${qty} = $${price * qty}
-        <button class='remove-buttons' id='${name}-button'>Remove</button></li>`;
+        itemStr += itemString(name, price, qty);
     }
 
     itemList.innerHTML = itemStr;
     
     cartTotal.innerHTML = `The total cost is: $${getTotalPrice()}`;
     removeButtons();
+    addOneButtons();
+    removeOneButtons();
+    addInputQty();
 }
 
 // get total quantity of items in the cart

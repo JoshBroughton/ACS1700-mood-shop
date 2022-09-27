@@ -94,3 +94,52 @@ main {
     border: none;
     margin-bottom: 15px;
 }
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #2EC4B6;
+    padding: 25px;
+}
+
+footer button {
+    background-color: #DB7F8E;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+    align-self: center;
+}
+
+.remove-buttons {
+    height: 25px;
+    width: 125px;
+    align-self: center;
+}
+
+footer input {
+    background-color: #DB7F8E;
+    border-radius: 5px;
+    width: 50px;
+    height: 20px;
+    align-self: center;
+}
+
+footer ul {
+    width: 570px;
+    line-height: .3;
+}
+
+footer li {
+    display: grid;
+    list-style-type: none;
+    width: 1250px;
+    grid-template-columns: 300px 150px 30px 30px 60px;
+}
+
+footer p {
+    align-self: center;
+}
